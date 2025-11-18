@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "My Extension",
+  "version": "1.0",
+  "description": "My Extension",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApfVGy2j65FJ6zjlxwvkzT9kFh4Yv3IaqmgdPElpZs9J7UC7v6hLKbcrOEpxBL//QO+Erx3xMoDx35V9a7Xr+YEy4fry47ijylTBTblitxo8fn+jCvkk4btzlaAjg8DDwWq+Pg9QLNbxYz8OAi/4BnCiqTNLmBTDud8faEwOg2DZ6hnaSuQO3g/7jgHcP6reYPHkYzpCJd5FHsMnRFA47hv5N1PoXFzvBBZeZlsFXjmXpb0uw3sr6sEHEYRfMn2Zduiw2XHMNSTJ6uBFvIFHCUoKwhgvwuzYEkWaVgt9iupRQW9+VCq2cSHAM0qFbLwU8QPpZteigNLOMUECQSn1NqQIDAQAB",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["handler.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "My Extension"
+  }
+}

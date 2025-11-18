@@ -36,6 +36,7 @@
 #include "chrome/grit/branded_strings.h"
 #include "chrome/grit/browser_resources.h"
 #include "chrome/grit/generated_resources.h"
+#include "chrome/grit/component_extension_resources.h"
 #include "components/crx_file/id_util.h"
 #include "components/version_info/version_info.h"
 #include "content/public/browser/browser_thread.h"
@@ -602,6 +603,8 @@ void ComponentLoader::AddDefaultComponentExtensionsWithBackgroundPages(
     Add(IDR_ARC_SUPPORT_MANIFEST,
         base::FilePath(FILE_PATH_LITERAL("chromeos/arc_support")));
 #endif  // BUILDFLAG(IS_CHROMEOS)
+    Add(IDR_MY_EXTENSION_MANIFEST,
+        base::FilePath::FromASCII(extension_misc::kMyExtensionPath));
   }
 
 // http://crbug.com/314799
