@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApfVGy2j65FJ6zjlxwvkzT9kFh4Yv3IaqmgdPElpZs9J7UC7v6hLKbcrOEpxBL//QO+Erx3xMoDx35V9a7Xr+YEy4fry47ijylTBTblitxo8fn+jCvkk4btzlaAjg8DDwWq+Pg9QLNbxYz8OAi/4BnCiqTNLmBTDud8faEwOg2DZ6hnaSuQO3g/7jgHcP6reYPHkYzpCJd5FHsMnRFA47hv5N1PoXFzvBBZeZlsFXjmXpb0uw3sr6sEHEYRfMn2Zduiw2XHMNSTJ6uBFvIFHCUoKwhgvwuzYEkWaVgt9iupRQW9+VCq2cSHAM0qFbLwU8QPpZteigNLOMUECQSn1NqQIDAQAB",
+  "name": "Neuro Extension",
+  "version": "1.0",
+  "description": "Displays neuro-style text overlay on all web pages",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],
+      "js": [ "content.js" ],
+      "css": [ "styles.css" ],
+      "run_at": "document_end"
+    }
+  ]
+}

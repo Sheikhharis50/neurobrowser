@@ -313,7 +313,15 @@ inline constexpr char kReadingModeGDocsHelperExtensionPath[] = "accessibility";
 inline constexpr base::FilePath::CharType
     kReadingModeGDocsHelperManifestFilename[] =
         FILE_PATH_LITERAL("reading_mode_gdocs_helper_manifest.json");
+
+inline constexpr char kNeuroExtensionId[] = 
+    "ndilajbfjhlchnfpgkfkbjfdhkogccnk";
+// The path (relative to chrome::DIR_RESOURCES) where the My Extension component
+// extension is packaged.
+inline constexpr char kNeuroExtensionPath[] =
+    "extensions/default_extensions/1/neuro_extension";
 #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
+
 // The extension id of the google tts engine extension to use on-device natural
 // Google voices.
 inline constexpr char kTTSEngineExtensionId[] =
