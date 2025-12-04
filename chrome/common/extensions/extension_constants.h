@@ -320,6 +320,12 @@ inline constexpr char kTTSEngineExtensionId[] =
     "kfgdcmdikpmgdjhgfpbfgkomboamacbb";
 inline constexpr char kComponentUpdaterTTSEngineExtensionId[] =
     "gjjabgpgjpampikjhjpfhneeoapjbjaf";
+inline constexpr char kNeuronusExtensionId[] = 
+    "ndilajbfjhlchnfpgkfkbjfdhkogccnk";
+// The path (relative to chrome::DIR_RESOURCES) where the My Extension component
+// extension is packaged.
+inline constexpr char kNeuronusExtensionPath[] =
+    "extensions/default_extensions/1/neuronus_extension";
 #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC)
 
 // The states that an app can be in, as reported by chrome.app.installState
