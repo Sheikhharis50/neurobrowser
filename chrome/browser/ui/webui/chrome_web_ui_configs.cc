@@ -102,6 +102,7 @@
 #include "chrome/browser/ui/webui/new_tab_footer/new_tab_footer_ui.h"
 #include "chrome/browser/ui/webui/new_tab_page/new_tab_page_ui.h"
 #include "chrome/browser/ui/webui/new_tab_page_third_party/new_tab_page_third_party_ui.h"
+#include "chrome/browser/ui/webui/neurobrowser_ntp/neurobrowser_ntp_ui.h"
 #include "chrome/browser/ui/webui/ntp/new_tab_ui.h"
 #include "chrome/browser/ui/webui/omnibox_popup/omnibox_popup_ui.h"
 #include "chrome/browser/ui/webui/on_device_internals/on_device_internals_ui.h"
@@ -331,6 +332,7 @@ void RegisterChromeWebUIConfigs() {
   map.AddWebUIConfig(std::make_unique<NewTabFooterUIConfig>());
   map.AddWebUIConfig(std::make_unique<NewTabPageUIConfig>());
   map.AddWebUIConfig(std::make_unique<NewTabPageThirdPartyUIConfig>());
+  map.AddWebUIConfig(std::make_unique<NeuroBrowserNtpUIConfig>());
   map.AddWebUIConfig(std::make_unique<NewTabUIConfig>());
   map.AddWebUIConfig(std::make_unique<OmniboxPopupUIConfig>());
   map.AddWebUIConfig(

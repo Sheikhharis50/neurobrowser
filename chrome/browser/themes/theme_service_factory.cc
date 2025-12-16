@@ -135,11 +135,11 @@ void ThemeServiceFactory::RegisterProfilePrefs(
       user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
   registry->RegisterIntegerPref(
       prefs::kBrowserColorScheme,
-      static_cast<int>(ThemeService::BrowserColorScheme::kSystem));
+      static_cast<int>(ThemeService::BrowserColorScheme::kDark));
   registry->RegisterIntegerPref(
       prefs::kDeprecatedUserColorDoNotUse, SK_ColorTRANSPARENT,
       user_prefs::PrefRegistrySyncable::SYNCABLE_PREF);
-  registry->RegisterIntegerPref(prefs::kUserColor, SK_ColorTRANSPARENT);
+  registry->RegisterIntegerPref(prefs::kUserColor, SK_ColorBLACK);
   registry->RegisterIntegerPref(
       prefs::kDeprecatedBrowserColorVariantDoNotUse,
       static_cast<int>(ui::mojom::BrowserColorVariant::kSystem),

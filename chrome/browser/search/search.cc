@@ -95,16 +95,6 @@ enum NewTabURLState {
   NEW_TAB_URL_MAX
 };
 
-const TemplateURL* GetDefaultSearchProviderTemplateURL(Profile* profile) {
-  if (profile) {
-    TemplateURLService* template_url_service =
-        TemplateURLServiceFactory::GetForProfile(profile);
-    if (template_url_service) {
-      return template_url_service->GetDefaultSearchProvider();
-    }
-  }
-  return nullptr;
-}
 
 bool IsMatchingServiceWorker(const GURL& my_url, const GURL& document_url) {
   // The origin should match.
@@ -142,19 +132,6 @@ bool IsNTPOrRelatedURLHelper(const GURL& url, Profile* profile) {
                                     IsMatchingServiceWorker(url, new_tab_url));
 }
 
-bool IsURLAllowedForSupervisedUser(const GURL& url, Profile& profile) {
-  if (!profile.IsChild()) {
-    return true;
-  }
-  supervised_user::SupervisedUserService* supervised_user_service =
-      SupervisedUserServiceFactory::GetForProfile(&profile);
-  supervised_user::SupervisedUserURLFilter* url_filter =
-      supervised_user_service->GetURLFilter();
-  if (url_filter->GetFilteringBehavior(url).IsBlocked()) {
-    return false;
-  }
-  return true;
-}
 
 // Used to look up the URL to use for the New Tab page. Also tracks how we
 // arrived at that URL so it can be logged with UMA.
@@ -172,41 +149,12 @@ struct NewTabURLDetails {
     }
 
 #if BUILDFLAG(IS_ANDROID)
-    const GURL local_url;
+    return NewTabURLDetails(GURL(), NEW_TAB_URL_NOT_SET);
 #else
-    const bool default_is_google = DefaultSearchProviderIsGoogle(profile);
-    const GURL local_url(default_is_google
-                             ? chrome::kChromeUINewTabPageURL
-                             : chrome::kChromeUINewTabPageThirdPartyURL);
-    if (default_is_google) {
-      return NewTabURLDetails(local_url, NEW_TAB_URL_VALID);
-    }
+    const GURL local_url(chrome::kChromeUINeuroBrowserNtpURL);
+    return NewTabURLDetails(local_url, NEW_TAB_URL_VALID);
 #endif
-
-    const TemplateURL* template_url =
-        GetDefaultSearchProviderTemplateURL(profile);
-    if (!profile || !template_url) {
-      return NewTabURLDetails(local_url, NEW_TAB_URL_BAD);
-    }
-
-    GURL search_provider_url(template_url->new_tab_url_ref().ReplaceSearchTerms(
-        TemplateURLRef::SearchTermsArgs(std::u16string()),
-        UIThreadSearchTermsData()));
-
-    if (!search_provider_url.is_valid()) {
-      return NewTabURLDetails(local_url, NEW_TAB_URL_NOT_SET);
-    }
-    if (!search_provider_url.SchemeIsCryptographic()) {
-      return NewTabURLDetails(local_url, NEW_TAB_URL_INSECURE);
-    }
-    if (!IsURLAllowedForSupervisedUser(search_provider_url,
-                                       CHECK_DEREF(profile))) {
-      return NewTabURLDetails(local_url, NEW_TAB_URL_BLOCKED);
-    }
-
-    return NewTabURLDetails(search_provider_url, NEW_TAB_URL_VALID);
   }
-
   const GURL url;
   const NewTabURLState state;
 };
