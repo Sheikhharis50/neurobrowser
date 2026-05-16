@@ -589,10 +589,8 @@ void ToolbarView::Init() {
         (browser_->profile()->IsOffTheRecord() &&
          browser_->profile()->GetOTRProfileID().IsCaptivePortal());
 #else
-    // DevTools profiles are OffTheRecord, so hide it there.
-    show_avatar_toolbar_button = browser_->profile()->IsIncognitoProfile() ||
-                                 browser_->profile()->IsGuestSession() ||
-                                 browser_->profile()->IsRegularProfile();
+  // Hide the avatar button for NeuroBrowser
+  show_avatar_toolbar_button = false;
 #endif
     avatar_->SetVisible(show_avatar_toolbar_button);
   }

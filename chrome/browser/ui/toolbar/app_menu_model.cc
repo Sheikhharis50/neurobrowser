@@ -1836,6 +1836,15 @@ void AppMenuModel::LogMenuMetrics(int command_id) {
       }
       LogMenuAction(MENU_ACTION_SHOW_SAFETY_HUB);
       break;
+    case IDC_DECLUTTER_TABS:
+      if (!uma_action_recorded_) {
+              
+        base::UmaHistogramMediumTimes("WrenchMenu.TimeToAction.DeclutterTabs",
+                                      delta);
+      }
+
+      LogMenuAction(MENU_ACTION_DECLUTTER_TABS);
+      break;
     case IDC_SAFETY_HUB_MANAGE_EXTENSIONS:
       if (!uma_action_recorded_) {
         base::UmaHistogramMediumTimes(
@@ -1987,18 +1996,7 @@ void AppMenuModel::Build() {
   AddSeparator(ui::NORMAL_SEPARATOR);
 
 #if !BUILDFLAG(IS_CHROMEOS)
-  sub_menus_.push_back(std::make_unique<ProfileSubMenuModel>(
-      this, browser()->profile(), browser()->window()->GetColorProvider()));
-  auto* const profile_submenu_model =
-      static_cast<ProfileSubMenuModel*>(sub_menus_.back().get());
-  AddSubMenu(IDC_PROFILE_MENU_IN_APP_MENU,
-             profile_submenu_model->profile_name(), profile_submenu_model);
-  SetIconForCommandId(IDC_PROFILE_MENU_IN_APP_MENU,
-                      profile_submenu_model->avatar_image_model());
-  SetElementIdentifierAt(
-      GetIndexOfCommandId(IDC_PROFILE_MENU_IN_APP_MENU).value(),
-      kProfileMenuItem);
-  AddSeparator(ui::SPACING_SEPARATOR);
+  // Profile menu hidden for NeuroBrowser
 #endif
 
   if (!browser_->profile()->IsGuestSession()) {

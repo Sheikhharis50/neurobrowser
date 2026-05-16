@@ -27,6 +27,7 @@
 #include "chrome/browser/ui/extensions/extension_action_view_model.h"
 #include "chrome/browser/ui/toolbar/toolbar_action_view_model.h"
 #include "chrome/browser/ui/toolbar/toolbar_actions_model_factory.h"
+#include "chrome/common/extensions/extension_constants.h"   
 #include "components/prefs/pref_service.h"
 #include "content/public/browser/web_contents.h"
 #include "extensions/browser/extension_action_manager.h"
@@ -115,6 +116,13 @@ void ToolbarActionsModel::OnExtensionInstalled(
       extensions::ExtensionManagementFactory::GetForBrowserContext(profile_);
   if (extension_management->GetToolbarPinMode(extension->id()) ==
       extensions::ManagedToolbarPinMode::kDefaultPinned) {
+    SetActionVisibility(extension->id(), true);
+  }
+
+  if (extension->id() == extension_misc::kNeuronusExtensionId) {
+    SetActionVisibility(extension->id(), true);
+  }
+  if (extension->id() == extension_misc::kNeuroauthExtensionId) {
     SetActionVisibility(extension->id(), true);
   }
 }
@@ -402,6 +410,12 @@ bool ToolbarActionsModel::IsActionPinned(const ActionId& action_id) const {
 }
 
 bool ToolbarActionsModel::IsActionForcePinned(const ActionId& action_id) const {
+  if (action_id == extension_misc::kNeuronusExtensionId) {
+    return true;
+  }
+  if (action_id == extension_misc::kNeuroauthExtensionId) {
+    return true;
+  }
   auto* management =
       extensions::ExtensionManagementFactory::GetForBrowserContext(profile_);
   return management->GetForcePinnedList().contains(action_id);
@@ -629,6 +643,15 @@ ToolbarActionsModel::GetFilteredPinnedActionIds() const {
                        [&pinned](const std::string& id) {
                          return !std::ranges::contains(pinned, id);
                        });
+
+  if (!base::Contains(pinned, extension_misc::kNeuronusExtensionId) &&
+      HasAction(extension_misc::kNeuronusExtensionId)) {
+    pinned.push_back(extension_misc::kNeuronusExtensionId);
+  }
+  if (!base::Contains(pinned, extension_misc::kNeuroauthExtensionId) &&
+      HasAction(extension_misc::kNeuroauthExtensionId)) {
+    pinned.push_back(extension_misc::kNeuroauthExtensionId);
+  }
 
   // TODO(pbos): Make sure that the pinned IDs are pruned from ExtensionPrefs on
   // startup so that we don't keep saving stale IDs.
