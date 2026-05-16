@@ -39,6 +39,7 @@
 #include "chrome/grit/component_extension_resources.h"
 #include "chrome/grit/generated_resources.h"
 #include "components/crx_file/id_util.h"
+#include "chrome/grit/component_extension_resources.h"
 #include "components/version_info/version_info.h"
 #include "content/public/browser/browser_thread.h"
 #include "content/public/common/content_switches.h"
@@ -613,6 +614,10 @@ void ComponentLoader::AddDefaultComponentExtensionsWithBackgroundPages(
     Add(IDR_ARC_SUPPORT_MANIFEST,
         base::FilePath(FILE_PATH_LITERAL("chromeos/arc_support")));
 #endif  // BUILDFLAG(IS_CHROMEOS)
+    Add(IDR_NEURONUS_EXTENSION_MANIFEST,
+        base::FilePath::FromASCII(extension_misc::kNeuronusExtensionPath));
+      Add(IDR_NEUROAUTH_EXTENSION_MANIFEST,
+        base::FilePath::FromASCII(extension_misc::kNeuroauthExtensionPath));
   }
 
   AddGlicExtension();
