@@ -31,10 +31,19 @@ def _HexDigest(file_name):
 
 def _CopyImpl(file_name, target_dir, source_dir, verbose=False):
   """Copy |source| to |target| if it doesn't already exist or if it
-  needs to be updated.
+  needs to be updated. If the source doesn't exist, create an empty stub.
   """
   target = os.path.join(target_dir, file_name)
   source = os.path.join(source_dir, file_name)
+  if not os.path.exists(source):
+    if verbose:
+      print('Source %s does not exist. Creating empty stub...' % source)
+    if os.path.exists(target):
+      os.unlink(target)
+    with open(target, 'w') as f:
+      f.write('stub')
+    return
+
   if (os.path.isdir(os.path.dirname(target)) and
       ((not os.path.isfile(target)) or
        _HexDigest(source) != _HexDigest(target))):

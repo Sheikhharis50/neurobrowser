@@ -384,6 +384,13 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 					$1<ex>usage statistics</ex>
 				</ph> to Google
 			</message>
+			<if expr="not is_android">
+				<message name="IDS_CHROME_SIGNOUT_CONFIRMATION_PROMPT_TOO_MANY_BOOKMARKS_BODY" desc="Body of the signout confirmation dialog when the user has too many bookmarks.">
+					You reached NeuroBrowser’s limit of <ph name="BOOKMARK_LIMIT">$1<ex>100,000</ex></ph> bookmarks, so some of your bookmarks haven’t been saved in your Google Account yet.
+
+New bookmarks can’t be saved in your account until you delete some. If you sign out now, unsaved bookmarks will be deleted.
+				</message>
+			</if>
 			<message name="IDS_RESET_PROFILE_SETTINGS_EXPLANATION_IN_BULLET_POINTS" desc="A label formatted with bullet points describing the consequences of the 'reset profile settings' feature">
 				This action will:
 				<ph name="LINE_BREAKS">&lt;br&gt;&lt;br&gt;</ph>
@@ -598,6 +605,9 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 			<message name="IDS_FR_CUSTOMIZE_DEFAULT_BROWSER" desc="Default browser checkbox label">
 				Make NeuroBrowser the default browser
 			</message>
+			<message name="IDS_DEFAULT_BROWSER_CHANGED_MESSAGE" desc="Body of the notification shown when Chrome is no longer the default browser.">
+				NeuroBrowser is no longer your default browser. Make NeuroBrowser the default browser?
+			</message>
 			<if expr="use_titlecase">
 				<message name="IDS_STATUS_TRAY_KEEP_CHROME_RUNNING_IN_BACKGROUND" desc="In Title Case: The checkbox in the status tray context menu that controls whether chrome keeps running in the background after the last window is closed">
 					Let NeuroBrowser Run in the Background
@@ -782,6 +792,39 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 			<message name="IDS_DEFAULT_BROWSER_PIN_INFOBAR_TEXT" desc="Text to show in an infobar when NeuroBrowser is not the current default browser and can be pinned to the taskbar.">
 				Set NeuroBrowser as your default browser and pin it to your taskbar
 			</message>
+
+			<if expr="not is_android and not is_chromeos">
+				<message name="IDS_DEFAULT_BROWSER_MODAL_TITLE_WITH_SETTINGS_ILLUSTRATION" desc="Title of the default browser modal with settings illustration.">
+					Set NeuroBrowser as your default browser
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_MODAL_BODY_WITH_SETTINGS_ILLUSTRATION" desc="Body text of the default browser modal with settings illustration.">
+					Keep your passwords, bookmarks, and history perfectly synced across devices. Easily access the features you know and love by updating your default browser to NeuroBrowser.
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_MODAL_BODY_WITH_SETTINGS_ILLUSTRATION_UNPINNED" desc="Body text of the default browser modal with settings illustration when Chrome is not pinned to the taskbar.">
+					Keep your passwords, bookmarks, and history perfectly synced across devices. Easily access the features you know and love by updating your default browser to NeuroBrowser. NeuroBrowser will be pinned to your taskbar for quick access.
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_MODAL_TITLE_WITHOUT_SETTINGS_ILLUSTRATION" desc="Title of the default browser modal without settings illustration.">
+					Set NeuroBrowser as your default browser
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_MODAL_BODY_WITHOUT_SETTINGS_ILLUSTRATION" desc="Body text of the default browser modal without settings illustration.">
+					Get easy access to the features you know, love, and trust by setting NeuroBrowser as your default browser.
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_MODAL_BODY_WITHOUT_SETTINGS_ILLUSTRATION_UNPINNED" desc="Body text of the default browser modal without settings illustration when Chrome is not pinned to the taskbar.">
+					Get easy access to the features you know, love, and trust by setting NeuroBrowser as your default browser. NeuroBrowser will be pinned to your taskbar for quick access.
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_BUBBLE_DIALOG_TITLE" desc="Title of the dialog prompting the user to set Chrome as the default browser.">
+					Set NeuroBrowser as your default browser
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_BUBBLE_DIALOG_BODY" desc="Main explanatory text in the default browser dialog.">
+					Get easy access to the features you know, love, and trust by setting NeuroBrowser as your default browser.
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_BUBBLE_DIALOG_STEPS_PINNED_COMBINED" desc="Numbered instructions. $1, $2 and $3 are the bold button names.">
+					1. Click <ph name="BUTTON_LABEL">$1<ex>Open settings</ex></ph> below&#xA;2. Click <ph name="BUTTON_2">$2<ex>Set default</ex></ph> in your Windows settings&#xA;3. Click <ph name="BUTTON_3">$3<ex>Yes</ex></ph> in the Windows notification to pin NeuroBrowser to your taskbar for quick access
+				</message>
+				<message name="IDS_DEFAULT_BROWSER_SUCCESS_TOAST_BODY" desc="Body text of the toast shown when Google Chrome is successfully set as the default browser.">
+					NeuroBrowser is now your default browser
+				</message>
+			</if>
 			<if expr="is_win or is_macosx">
 				<message name="IDS_PDF_INFOBAR_TEXT" desc="Text to show in an infobar when NeuroBrowser is not the default PDF viewer.">
 					Set NeuroBrowser as your default PDF viewer
@@ -1153,6 +1196,14 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 			</message>
 			<message name="IDS_SESSION_RESTORE_LINK_ARIA_LABEL" desc="Accessibility text for the link in the session restore infobar to open the Settings page.">
 				Settings, opens in new tab.
+			</message>
+
+			<!-- Signin Search AI Mode promo -->
+			<message name="IDS_AI_SIGNIN_PROMO_SUBTITLE" desc="The message shown in a sign-in promo bubble that is shown to users not signed-in to the browser when they click in an AI Mode Search result link.">
+				You can keep chatting with AI Mode without switching tabs. To get started, sign in to NeuroBrowser. You'll also get your passwords and more on all your devices.
+			</message>
+			<message name="IDS_AI_SIGNIN_PROMO_AVATAR_PILL_TEXT" translateable="false" meaning="Text shown on the expanded avatar pill when the Signin Search AI Bubble promo is shown to the user">
+				Sign in to NeuroBrowser?
 			</message>
 
 			<!-- Enterprise sign-in dialog -->
@@ -1651,6 +1702,14 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 				''' It also controls what page is shown when you start NeuroBrowser or search from the Omnibox. '''
 			</message>
 
+			<!-- Search Settings Page -->
+			<message name="IDS_SETTINGS_SEARCH_EXTENSION_ENGINES_ACTIVE_SHORTCUTS_EXPLANATION" desc="Subtitle for the active features and extensions subsection, explaining how they can be used.">
+				To search a specific NeuroBrowser feature or extension, type its shortcut in the address bar, followed by your selected keyboard key
+			</message>
+			<message name="IDS_SETTINGS_SEARCH_EXTENSION_ENGINES_INACTIVE_SHORTCUTS_EXPLANATION" desc="Subtitle for the inactive features and extensions subsection, explaining how they can be used.">
+				Some NeuroBrowser features and extensions come with shortcuts. You can choose to turn them back on.
+			</message>
+
 			<!-- Webstore strings -->
 			<message name="IDS_WEBSTORE_APP_DESCRIPTION" desc="Description for the WebStore app.">
 				Discover great apps, games, extensions and themes for NeuroBrowser.
@@ -1709,6 +1768,18 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 				<message name="IDS_AVATAR_BUTTON_MAKING_CHROME_YOURS" desc="The avatar button label when the user has just signed in. When clicked, it opens the profile menu.">
 					Making NeuroBrowser yours...
 				</message>
+
+				<!-- Sign-in Promo Avatar Button Label Desktop -->
+				<if expr="not use_titlecase">
+					<message name="IDS_AVATAR_BUTTON_SIGNIN_PROMO" desc="The avatar button promo label inviting the user to sign-in. Shown for signed out users, and signed in to the web only. When clicked, it opens the profile menu.">
+						Sign in to NeuroBrowser?
+					</message>
+				</if>
+				<if expr="use_titlecase">
+					<message name="IDS_AVATAR_BUTTON_SIGNIN_PROMO" desc="The avatar button promo label inviting the user to sign-in. Shown for signed out users, and signed in to the web only. When clicked, it opens the profile menu.">
+						Sign In to NeuroBrowser?
+					</message>
+				</if>
 			</if>
 
 			<!-- Update Recommended dialog -->
@@ -2357,6 +2428,14 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 				  desc="The hint text of the AI mode searchbox in the Lens side panel. This text is shown in the searchbox when the user has not yet typed any text, and prompts the user to ask a follow up question.">
 					Ask a follow up
 				</message>
+				<message name="IDS_LENS_COMPOSEBOX_HINT_TEXT_SEARCH_PAGE"
+				  desc="The hint text of the AI mode searchbox in the Lens side panel. This text is shown in the searchbox when the user has not yet typed any text but has opened the overlay to make AIM follow up queries.">
+					Search anything on page
+				</message>
+				<message name="IDS_LENS_COMPOSEBOX_HINT_TEXT_SELECT_PAGE"
+				  desc="The hint text of the AI mode searchbox in the Lens side panel. This text is shown in the searchbox when the user has not yet typed any text but has opened the overlay to make AIM follow up queries.">
+					Select anything on page
+				</message>
 				<message name="IDS_LENS_COMPOSEBOX_HINT_TEXT_ASK_ANYTHING"
 					desc="The hint text of the AI mode searchbox in the Lens tab. This text is shown in the searchbox when the user has not yet typed any text, and prompts the user to ask a question.">
 					Ask anything
@@ -2633,6 +2712,9 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 				  desc="This string appears as a heading on a full-page screen that asks the user to sign in to NeuroBrowser with their Google Account. It appears when the user launches NeuroBrowser for the first time. When they sign in, they can personalize and customize NeuroBrowser and remember their settings in their Google Account. The tone should be inviting and alluring.">
 					Sign in to NeuroBrowser
 				</message>
+				<message name="IDS_FRE_GET_YOUR_BROWSER_READY_TITLE" meaning="Title" desc="It appears when the user launches NeuroBrowser for the first time on the page that is displayed before the sign in page. When they sign in, they can personalize and customize NeuroBrowser and remember their settings in their Google Account. The tone should be inviting and alluring.">
+					Let's get your NeuroBrowser ready
+				</message>
 
 				<!-- Default Browser Promo -->
 				<message name="IDS_FRE_DEFAULT_BROWSER_TITLE" desc="Title for the page that prompts user to set NeuroBrowser as their default browser in the first run experience.">
@@ -2658,6 +2740,14 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 				</message>
 				<message name="IDS_SET_BROWSER_AS_DEFAULT_MENU_ITEM" desc="Menu item that prompts user to set NeuroBrowser as their default browser.">
 					Set NeuroBrowser as your default browser
+				</message>
+
+				<!-- Default Browser Promo Refresh -->
+				<message name="IDS_FRE_REFRESH_DEFAULT_BROWSER_TITLE" desc="Title for the page that prompts user to set Chrome as their default browser in the refreshed first run experience.">
+					Set NeuroBrowser as default and pin it to taskbar
+				</message>
+				<message name="IDS_FRE_REFRESH_DEFAULT_BROWSER_SUBTITLE" desc="Subtitle for the page that prompts user to set Chrome as their default browser in the refreshed first run experience.">
+					Open links in NeuroBrowser from any app and keep the browser accessible on your taskbar
 				</message>
 
 				<!-- Profile switch IPH -->
@@ -2735,10 +2825,45 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 			<message name="IDS_SETTINGS_SITE_SETTINGS_JAVASCRIPT_OPTIMIZER_BLOCKED_SUB_LABEL" desc="Sub-label for the disabled option of the JavaScript optimizer content setting.">
 				Reduces performance but makes NeuroBrowser more resistant to attacks
 			</message>
+			<!-- Indigo Strings -->
+			<message name="IDS_INDIGO_ENTRYPOINT_CHIP_TEXT" desc="The text on the Indigo entry point chip in the omnibox." translateable="false">
+				Indigo
+			</message>
+			<message name="IDS_INDIGO_ENTRYPOINT_CHIP_TOOLTIP_TEXT" desc="The tooltip text of the Indigo entry point chip in the omnibox in the hover state." translateable="false">
+				Indigo tooltip text
+			</message>
+			<message name="IDS_INDIGO_ENTRYPOINT_ANCHORED_MESSAGE_TEXT" desc="The text shown in the anchored message bubble for the Indigo page action." translateable="false">
+				Indigo is available for this page
+			</message>
+			<message name="IDS_INDIGO_TITLE" desc="Title for the Indigo page." translateable="false">
+				Indigo
+			</message>
+			<message name="IDS_INDIGO_TEXT_LAYER_STEP_1" desc="The text for step 1 of the Indigo text layer." translateable="false">
+				Loading (1/3)...
+			</message>
+			<message name="IDS_INDIGO_TEXT_LAYER_STEP_2" desc="The text for step 2 of the Indigo text layer." translateable="false">
+				Loading (2/3)...
+			</message>
+			<message name="IDS_INDIGO_TEXT_LAYER_STEP_3" desc="The text for step 3 of the Indigo text layer." translateable="false">
+				Loading (3/3)...
+			</message>
+
 			<!-- ChromiumUpdater Strings -->
 			<if expr="is_win">
 				<message name="IDS_FRIENDLY_COMPANY_NAME" desc="Company name" translateable="false">
 					NeuroBrowser
+				</message>
+				<message name="IDS_SETTINGS_FOREGROUND_LAUNCH_ON_STARTUP_LABEL" desc="Label for settings toggle button that enables or disables opening Chrome on system startup">
+					Launch NeuroBrowser when Windows starts
+				</message>
+				<message name="IDS_SETTINGS_FOREGROUND_LAUNCH_ON_STARTUP_SUB_LABEL" desc="Sub label for settings toggle button that enables or disables opening Chrome on system startup">
+					Launch NeuroBrowser automatically to begin browsing instantly.
+				</message>
+				<message name="IDS_STARTUP_LAUNCH_INFOBAR_OPT_IN_TITLE" desc="Title of the infobar shown to ask the user if they want to allow Chrome to launch when windows starts.">
+					Begin browsing instantly: NeuroBrowser can now launch when Windows starts.
+				</message>
+				<message name="IDS_STARTUP_LAUNCH_INFOBAR_OPT_OUT_TITLE" desc="Title of the infobar shown to inform the user that Chrome now starts automatically when Windows starts.">
+					NeuroBrowser now launches when Windows starts so you can begin browsing instantly. You can turn this off in settings.
 				</message>
 				<message name="IDS_NO_UPDATE_RESPONSE" desc="Updater response for no updates when handling install result.">
 					No update is available.
@@ -3102,10 +3227,12 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 					Cleared NeuroBrowser data
 				</message>
 			</if>
+			<message name="IDS_SKILL_SAVED_TOAST_BUTTON" desc="Text on the toast action button after a skill is saved">
+				Try with Gemini in NeuroBrowser
+			</message>
 
 			<!-- Glic Strings -->
-			<if expr="enable_glic">
-				<message name="IDS_GLIC_PROMO_TITLE" desc="Glic promo title." translateable="false">
+			<message name="IDS_GLIC_PROMO_TITLE" desc="Glic promo title." translateable="false">
 					Try Gemini in NeuroBrowser
 				</message>
 				<message name="IDS_GLIC_TAB_STRIP_BUTTON_TOOLTIP" translateable="false" desc="This is the tooltip shown when hovering over the glic entry button in the tab strip while the Glic window is closed.">
@@ -3212,7 +3339,6 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 				<message name="IDS_GLIC_BUTTON_ENTRYPOINT_ASK_BROWSER_LABEL" desc="Label on the button used to open Gemini in Chromium.">
 					Ask NeuroBrowser
 				</message>
-			</if>
 
 			<!-- UNO Promo strings for extensions -->
 			<if expr="enable_extensions">
@@ -3270,18 +3396,63 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 				<message name="IDS_IOS_DESKTOP_ESB_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop ESB promo bubble with a reminder button.">
 					Stay safer on the go with Enhanced Safe Browsing on NeuroBrowser for iOS
 				</message>
+				<message name="IDS_IOS_DESKTOP_ESB_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop ESB promo bubble with a QR code.">
+					Extend Enhanced Safe Browsing with NeuroBrowser on your phone
+				</message>
 				<message name="IDS_IOS_DESKTOP_PASSWORD_PROMO_BUBBLE_FOOTER_DESCRIPTION_REMINDER" desc="The description for the footer of the iOS desktop password promo bubble.">
 					Sign in faster to sites using saved passwords for NeuroBrowser on iOS
 				</message>
+				<message name="IDS_IOS_DESKTOP_PASSWORD_PROMO_BUBBLE_FOOTER_TITLE" desc="The title for the footer of the iOS desktop password promo bubble suggesting to users that they can use their passwords on their iOS devices.">
+					Use your passwords with NeuroBrowser on your phone
+				</message>
+				<if expr="use_titlecase">
+					<message name="IDS_IOS_DESKTOP_PROMO_BUBBLE_BUTTON_ACCEPT_QR" desc="The text inside the iOS promo bubble button allowing the user to accept by getting the app via QR code.">
+						Get the NeuroBrowser App
+					</message>
+				</if>
+				<if expr="not use_titlecase">
+					<message name="IDS_IOS_DESKTOP_PROMO_BUBBLE_BUTTON_ACCEPT_QR" desc="The text inside the iOS promo bubble button allowing the user to accept by getting the app via QR code.">
+						Get the NeuroBrowser app
+					</message>
+				</if>
+				<message name="IDS_IOS_DESKTOP_PROMO_QR_CODE_ALT_TEXT" desc="The accessibility label for the QR code image in the iOS desktop promo bubbles.">
+					QR code to download NeuroBrowser on mobile devices
+				</message>
 				<message name="IDS_IOS_DESKTOP_PROMO_REMINDER_CONFIRMATION" desc="Body text of the promo bubble that appears after uses choose to be reminded of the feature on their iOS device. The placeholder will be replaced by the name of the feature.">
-					You'll see a prompt to try <ph name="FEATURE_NAME">
-						$1<ex>Google Lens</ex>
-					</ph> next time you open NeuroBrowser iOS.
+					You'll see a prompt to try <ph name="FEATURE_NAME">$1<ex>Google Lens</ex></ph> next time you open NeuroBrowser iOS.
 				</message>
 				<message name="IDS_IOS_DESKTOP_PASSWORD_PROMO_REMINDER_CONFIRMATION" desc="Body text of the promo bubble that appears after uses choose to be reminded of the Password Manager on their iOS device.">
-					Next time you open NeuroBrowser on your <ph name="DEVICE_TYPE">
-						$1<ex>iPhone</ex>
-					</ph>, you'll see a prompt to use Google Password Manager.
+					Next time you open NeuroBrowser on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>, you'll see a prompt to use Google Password Manager.
+				</message>
+				<message name="IDS_IOS_DESKTOP_LENS_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop Lens promo bubble.">
+					Shop, translate and identify what you see with your camera on the NeuroBrowser iOS app
+				</message>
+				<message name="IDS_IOS_DESKTOP_LENS_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop Lens promo bubble with a QR code.">
+					Try Google Lens with NeuroBrowser on your phone
+				</message>
+				<message name="IDS_IOS_DESKTOP_PASSWORD_PROMO_BUBBLE_FOOTER_DESCRIPTION_QR" desc="The description for the iOS promo bubble footer which lets the user know how to use their saved passwords on their phone: follow the QR code, download NeuroBrowser for iOS and sign in to their account.">
+					To use your saved passwords, follow the QR code, download NeuroBrowser for iOS and sign in to your Google Account
+				</message>
+				<message name="IDS_IOS_DESKTOP_LENS_PROMO_NOTIFICATION_TITLE" desc="The title for the iOS desktop Lens promo notification.">
+					NeuroBrowser Tip: Search With Lens
+				</message>
+				<message name="IDS_IOS_DESKTOP_PASSWORD_PROMO_NOTIFICATION_TITLE" desc="The title for the iOS desktop Password promo notification.">
+					NeuroBrowser Tip: Save Passwords
+				</message>
+				<message name="IDS_IOS_DESKTOP_PRICE_TRACKING_DESCRIPTION_QR" desc="The description for the iOS desktop price tracking promo bubble with a QR code.">
+					Download NeuroBrowser on your phone to track prices and get alerts when the price drops on any site
+				</message>
+				<message name="IDS_IOS_DESKTOP_PRICE_TRACKING_REMINDER_CONFIRMATION" desc="Body text of the promo bubble that appears after the user chooses to be reminded of price tracking on their iOS device.">
+					Next time you open NeuroBrowser on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>, you’ll see a prompt to enable price tracking alerts.
+				</message>
+				<message name="IDS_IOS_DESKTOP_SAFE_BROWSING_PROMO_NOTIFICATION_TITLE" desc="The title for the iOS desktop Enhanced Safe Browsing promo notification.">
+					NeuroBrowser Tip: Enhanced Safe Browsing
+				</message>
+				<message name="IDS_IOS_DESKTOP_TAB_GROUPS_PROMO_BUBBLE_DESCRIPTION_QR" desc="The description for the iOS desktop Tab Groups promo bubble with a QR code.">
+					Download NeuroBrowser on your phone to open or create new tab groups on the go.
+				</message>
+				<message name="IDS_IOS_DESKTOP_TAB_GROUPS_REMINDER_CONFIRMATION" desc="Body text of the promo bubble that appears after the user chooses to be reminded of tab groups on their iOS device.">
+					Next time you open NeuroBrowser on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>, you'll see a prompt to use tab groups.
 				</message>
 			</if>
 
@@ -3301,6 +3472,34 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
 			<message name="IDS_DEFAULT_SEARCH_ENGINE_RESET_NOTIFICATION_LEARN_MORE_BUTTON"
 			   desc="Label for the 'Learn more' button in the default search engine reset notification, which opens a help center article.">
 				Learn more
+			</message>
+			<message name="IDS_DEFAULT_SEARCH_ENGINE_RESET_NOTIFICATION_SEARCH_SETTINGS_BUTTON"
+			   desc="Label for the 'Search settings' button in the default search engine reset notification, which opens the search engine settings page.">
+				Search settings
+			</message>
+
+			<!--Report-unsafe-site Dialog (accessed from Help menu)-->
+			<message name="IDS_REPORT_UNSAFE_SITE_DIALOG_TITLE" desc="Title of the dialog for reporting an unsafe site to Google">
+				Report this site to Google
+			</message>
+			<message name="IDS_REPORT_UNSAFE_SITE_DIALOG_DESCRIPTION" desc="Explanatory text in dialog for reporting an unsafe site to Google">
+				Improve online safety for everyone when you report a site you think is harmful. Learn more about <ph name="BEGIN_LINK">&lt;a href="https://safebrowsing.google.com/#policies" target="_blank" id="unsafe_site_policy_link"&gt;</ph>Google's unsafe site policy.<ph name="END_LINK">&lt;/a&gt;</ph>
+			</message>
+			<message name="IDS_REPORT_UNSAFE_SITE_DIALOG_FOOTER" desc="Explanatory text in dialog footer describing what other information is sent to Google as part of the unsafe-site-report.">
+				We use info to improve this service. See <ph name="BEGIN_LINK1">&lt;a href="https://policies.google.com/privacy" target="_blank"&gt;</ph>Privacy Policy<ph name="END_LINK1">&lt;/a&gt;</ph> and <ph name="BEGIN_LINK2">&lt;a href="https://policies.google.com/terms" target="_blank"&gt;</ph>Terms of Service<ph name="END_LINK2">&lt;/a&gt;</ph>.
+			</message>
+
+			<!-- JS optimizations bubble -->
+			<message name="IDS_JS_OPTIMIZATION_BUBBLE_BODY_NON_POLICY_BODY" desc="Body text for the JavaScript optimization bubble when disabled for other reasons.">
+				For security, NeuroBrowser turns off JavaScript optimization when you visit a site for the first time.&#xA;If this page isn’t working as expected, try allowing optimization.
+			</message>
+
+			<!-- Send Tab To Self -->
+			<message name="IDS_SEND_TAB_TO_SELF_SIGN_IN_PROMO_TITLE" desc="Title of the send-tab-to-self sign-in promo bubble.">
+				Sign in to NeuroBrowser
+			</message>
+			<message name="IDS_SEND_TAB_TO_SELF_SIGN_IN_PROMO_BUTTON_LABEL" desc="Label of the sign-in button in the send-tab-to-self sign-in promo bubble.">
+				Sign in to NeuroBrowser
 			</message>
 		</messages>
 	</release>
